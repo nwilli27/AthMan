@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html>
-
+﻿@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,6 +13,30 @@
           integrity="sha-long-hash_code" crossorigin="anonymous" />
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-link
+                        @(controller == "Home" && action == "Index" ? "active" : "")"
+                       asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link
+                        @(controller == "Items" ? "active" : "")"
+                       asp-controller="Items" asp-action="Index">Items</a>
+                    <a class="nav-link
+                        @(controller == "Employees" ? "active" : "")"
+                       asp-controller="Employees" asp-action="Index">Employees</a>
+                    <a class="nav-link
+                        @(controller == "Clients" ? "active" : "")"
+                       asp-controller="Clients" asp-action="Index">Clients</a>
+                    <a class="nav-link
+                        @(controller == "Incidents" ? "active" : "")"
+                       asp-controller="Incidents" asp-action="Index">Incidents</a>
+                </div>
+            </nav>
+        </nav>
+    </header>
+
     <div class="container">
         <main role="main" class="mt-5">
             @RenderBody()
