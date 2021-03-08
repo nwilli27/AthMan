@@ -8,7 +8,7 @@ namespace AthMan.Controllers
 {
 	public class EmployeesController : Controller
 	{
-		public IActionResult List()
+		public IActionResult Index()
 		{
 			return View();
 		}

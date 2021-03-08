@@ -8,7 +8,7 @@ namespace AthMan.Controllers
 {
 	public class ClientsController : Controller
 	{
-		public IActionResult List()
+		public IActionResult Index()
 		{
 			return View();
 		}

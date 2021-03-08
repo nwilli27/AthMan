@@ -9,7 +9,7 @@ namespace AthMan.Controllers
 	public class IncidentsController : Controller
 	{
 		
-		public IActionResult List()
+		public IActionResult Index()
 		{
 			return View();
 		}
