@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace AthMan.Models
 {
-    public class Client
-    {
+	public class Client
+	{
 		public int ClientID { get; set; }
 
 		public string FirstName { get; set; }

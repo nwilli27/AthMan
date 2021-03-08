@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AthMan.Models
 {
-    public class Employee
-    {
-		public int EmployeeID { get; set; }	   
+	public class Employee
+	{
+		public int EmployeeID { get; set; }
 
 		public string Name { get; set; }
 

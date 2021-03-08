@@ -8,6 +8,6 @@ namespace AthMan.Models
     {
         public string CountryID { get; set; }
 
-		public string Name { get; set; }
-	}
+        public string Name { get; set; }
+    }
 }

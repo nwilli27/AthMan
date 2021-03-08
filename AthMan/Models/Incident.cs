@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AthMan.Models
 {
-    public class Incident
-    {
+	public class Incident
+	{
 		public int IncidentID { get; set; }
 
 		public int ClientID { get; set; }     // foreign key property
