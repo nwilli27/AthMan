@@ -27,6 +27,12 @@
         <span asp-validation-for="@Model.YearlyPrice" class="text-danger"></span>
     </div>
 
+    <div class="form-group">
+        <label asp-for="@Model.ReleaseDate">Relase Date</label>
+        <input asp-for="@Model.ReleaseDate" class="form-control" type="date"/>
+        <span asp-validation-for="@Model.ReleaseDate" class="text-danger"></span>
+    </div>
+
     <input type="hidden" asp-for="@Model.ItemID" />
 
     <button type="submit" class="btn btn-primary mb-5">@ViewBag.Action</button>

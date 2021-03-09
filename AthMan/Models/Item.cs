@@ -56,6 +56,7 @@ namespace AthMan.Models
 		/// <value>
 		/// The release date.
 		/// </value>
+		[Required(ErrorMessage = "Please select a release date.")]
 		public DateTime ReleaseDate { get; set; } = DateTime.Now;
 	}
 }
