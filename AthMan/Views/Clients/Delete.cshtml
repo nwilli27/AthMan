@@ -1,2 +1,17 @@
-﻿@{
+﻿@model Client
+@{
+    ViewBag.Title = "Delete Client";
 }
+
+<div class="text-center">
+    <h1 class="display-3" style="margin-top: 65px">Confirm Deletion</h1>
+    <p class="lead">Client: @Model.FullName</p>
+</div>
+
+<form asp-action="Delete" method="post" class="text-center">
+    <input type="hidden" asp-for="ClientID" />
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Clients" asp-action="Index"
+        class="btn btn-primary">Cancel</a>
+</form>
