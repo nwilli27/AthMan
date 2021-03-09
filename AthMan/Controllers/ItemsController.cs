@@ -32,19 +32,65 @@ namespace AthMan.Controllers
 			return View(items);
 		}
 
+		[HttpGet]
 		public IActionResult Details()
 		{
 			return View();
 		}
 
-		public IActionResult Edit()
+		[HttpGet]
+		public IActionResult Add()
 		{
-			return View();
+			ViewBag.Action = "Add";
+			return View("Edit", new Item());
 		}
 
-		public IActionResult Delete()
+		[HttpGet]
+		public IActionResult Edit(int id)
 		{
-			return View();
+			ViewBag.Action = "Edit";
+
+			var item = context.Items.Find(id);
+
+			return View(item);
+		}
+
+		[HttpPost]
+		public IActionResult Edit(Item item)
+		{
+			if (ModelState.IsValid)
+			{
+				if (item.ItemID == 0)
+				{
+					context.Items.Add(item);
+				}
+				else
+				{
+					context.Items.Update(item);
+				}
+				context.SaveChanges();
+				return RedirectToAction("Index", "Items");
+			}
+			else
+			{
+				ViewBag.Action = (item.ItemID == 0) ? "Add" : "Edit";
+				return View(item);
+			}
+		}
+
+		[HttpGet]
+		public IActionResult Delete(int id)
+		{
+			var item = context.Items.Find(id);
+			return View(item);
+		}
+
+		[HttpPost]
+		public IActionResult Delete(Item item)
+		{
+			context.Items.Remove(item);
+			context.SaveChanges();
+			return RedirectToAction("Index", "Items");
 		}
 
 		#endregion
