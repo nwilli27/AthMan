@@ -25,14 +25,8 @@
                 <a asp-controller="Clients" asp-action="Details" class="text-dark"
                    asp-route-id="@client.ClientID">@client.FullName</a>
             </td>
-            <td>
-                <a asp-controller="Clients" asp-action="Details" class="text-dark"
-                   asp-route-id="@client.ClientID">@client.Email</a>
-            </td>
-            <td>
-                <a asp-controller="Clients" asp-action="Details" class="text-dark"
-                   asp-route-id="@client.ClientID">@client.Phone</a>
-            </td>
+            <td>@client.Email</td>
+            <td>@client.Phone</td>
             <td>
                 <a asp-controller="Clients" asp-action="Edit" class="btn btn-primary"
                    asp-route-id="@client.ClientID"><span class="fas fas fa-edit"></span></a>

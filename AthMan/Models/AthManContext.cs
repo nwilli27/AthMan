@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace AthMan.Models
@@ -15,7 +16,12 @@ namespace AthMan.Models
         public DbSet<Client> Clients { get; set; }
         public DbSet<Incident> Incidents { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public async Task<Client> ClientPopulated(int id)
+		{
+			return await this.Clients.Include(c => c.Country).FirstOrDefaultAsync(c => c.ClientID == id);
+		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Item>().HasData(
                 new Item

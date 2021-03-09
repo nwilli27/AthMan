@@ -33,9 +33,10 @@ namespace AthMan.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Details()
+		public async Task<IActionResult> Details(int id)
 		{
-			return View();
+			var client = await context.ClientPopulated(id);
+			return View(client);
 		}
 
 		[HttpGet]

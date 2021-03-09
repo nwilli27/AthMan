@@ -25,14 +25,8 @@
                     <a asp-controller="Employees" asp-action="Details" class="text-dark"
                        asp-route-id="@employee.EmployeeID">@employee.Name</a>
                 </td>
-                <td>
-                    <a asp-controller="Employees" asp-action="Details" class="text-dark"
-                       asp-route-id="@employee.EmployeeID">@employee.Email</a>
-                </td>
-                <td>
-                    <a asp-controller="Employees" asp-action="Details" class="text-dark" -
-                       asp-route-id="@employee.EmployeeID">@employee.Phone</a>
-                </td>
+                <td>@employee.Email</td>
+                <td>@employee.Phone</td>
                 <td>
                     <a asp-controller="Employees" asp-action="Edit" class="btn btn-primary"
                        asp-route-id="@employee.EmployeeID"><span class="fas fas fa-edit"></span></a>

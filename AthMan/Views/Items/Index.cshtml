@@ -31,14 +31,8 @@
                 <a asp-controller="Items" asp-action="Details" class="text-dark"
                    asp-route-id="@item.ItemID">@item.Name</a>
             </td>
-            <td>
-                <a asp-controller="Items" asp-action="Details" class="text-dark" -
-                   asp-route-id="@item.ItemID">@item.YearlyPrice.Value.ToString("C2")</a>
-            </td>
-            <td>
-                <a asp-controller="Items" asp-action="Details" class="text-dark" -
-                   asp-route-id="@item.ItemID">@item.ReleaseDate.ToShortDateString()</a>
-            </td>
+            <td>@item.YearlyPrice.Value.ToString("C2")</td>
+            <td>@item.ReleaseDate.ToShortDateString()</td>
             <td>
                 <a asp-controller="Items" asp-action="Edit" class="btn btn-primary"
                    asp-route-id="@item.ItemID"><span class="fas fas fa-edit"></span></a>
