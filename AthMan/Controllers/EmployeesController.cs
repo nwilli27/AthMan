@@ -33,9 +33,10 @@ namespace AthMan.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Details()
+		public IActionResult Details(int id)
 		{
-			return View();
+			var employee = context.Employees.Find(id);
+			return View(employee);
 		}
 
 		[HttpGet]
