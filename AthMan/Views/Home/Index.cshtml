@@ -1,21 +1,49 @@
-﻿
-<html>
+﻿<html>
 <body>
     <div class="text-center">
         <h1 class="display-4" style="margin-top: 65px">The AthMan</h1>
         <p class="lead">Helping to Manage the World's Athletes</p>
     </div>
-    <div class="align-items-center">
-        <div class="col">
-            <div class="list-group">
-                <a asp-controller="Items" asp-action="Index"
-                   class="list-group-item">View our Items</a>
-                <a asp-controller="Employees" asp-action="Index"
-                   class="list-group-item">View our Employees</a>
-                <a asp-controller="Clients" asp-action="Index"
-                   class="list-group-item">View our Clients</a>
-                <a asp-controller="Incidents" asp-action="Index"
-                   class="list-group-item">View our Incidents</a>
+    
+    <div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <a asp-controller="Items" asp-action="Index" class="text-decoration-none">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body display-4 text-center pt-4 pb-4">
+                            <div class="card-text"><span class="fas fa-dollar-sign"></span>   Items</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <a asp-controller="Employees" asp-action="Index" class="text-decoration-none">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body display-4 text-center pt-4 pb-4">
+                            <div class="card-text"><span class="fas fa-id-card"></span>   Employees</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <a asp-controller="Clients" asp-action="Index" class="text-decoration-none">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body display-4 text-center pt-4 pb-4">
+                            <div class="card-text"><span class="fas fa-user-tie"></span>   Clients</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <a asp-controller="Incidents" asp-action="Index" class="text-decoration-none">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body display-4 text-center pt-4 pb-4">
+                            <div class="card-text"><span class="fas fa-book"></span>   Incidents</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
