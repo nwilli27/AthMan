@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AthMan.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,26 @@ namespace AthMan.Controllers
 {
 	public class ItemsController : Controller
 	{
+
+		#region Members
+
+		private AthManContext context { get; set; }
+
+		#endregion
+
+		#region Construction
+
+		public ItemsController(AthManContext context)
+		{
+			this.context = context;
+		}
+
+		#endregion
+
 		public IActionResult Index()
 		{
-			return View();
+			var items = context.Items.OrderBy(i => i.Name).ToList();
+			return View(items);
 		}
 
 		public IActionResult Details()

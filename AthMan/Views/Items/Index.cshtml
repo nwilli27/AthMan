@@ -1,2 +1,51 @@
-﻿@{
+﻿
+@model List<Item>
+@{
+    ViewBag.Title = "Item List";
 }
+
+<div class="text-center">
+    <h1 class="display-3" style="margin-top: 65px">Item List</h1>
+</div>
+
+<a asp-controller="Items" asp-action="Add" class="btn btn-success mb-2"><span class="fas fa-plus"></span> Add New Item</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Yearly Price</th>
+            <th>Release Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <a asp-controller="Items" asp-action="Details" class="text-dark"
+                   asp-route-id="@item.ItemID">@item.ItemCode</a>
+            </td>
+            <td>
+                <a asp-controller="Items" asp-action="Details" class="text-dark"
+                   asp-route-id="@item.ItemID">@item.Name</a>
+            </td>
+            <td>
+                <a asp-controller="Items" asp-action="Details" class="text-dark" -
+                   asp-route-id="@item.ItemID">@item.YearlyPrice</a>
+            </td>
+            <td>
+                <a asp-controller="Items" asp-action="Details" class="text-dark" -
+                   asp-route-id="@item.ItemID">@item.ReleaseDate</a>
+            </td>
+            <td>
+                <a asp-controller="Items" asp-action="Edit" class="btn btn-primary"
+                   asp-route-id="@item.ItemID"><span class="fas fas fa-edit"></span></a>
+                <a asp-controller="Items" asp-action="Delete" class="btn btn-danger"
+                   asp-route-id="@item.ItemID"><span class="fas fa-minus"></span></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
