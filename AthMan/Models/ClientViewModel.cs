@@ -5,11 +5,29 @@ using System.Threading.Tasks;
 
 namespace AthMan.Models
 {
+	/// <summary>
+	/// Holds data for a Client View
+	/// 
+	/// Author: Nolan Williams
+	/// Date: 3/9/2021
+	/// </summary>
 	public class ClientViewModel
 	{
 
-		public IList<Country> Countries;
+		/// <summary>
+		/// Gets or sets the countries.
+		/// </summary>
+		/// <value>
+		/// The countries.
+		/// </value>
+		public IList<Country> Countries { get; set; }
 
-		public Client Client;
+		/// <summary>
+		/// Gets or sets the client.
+		/// </summary>
+		/// <value>
+		/// The client.
+		/// </value>
+		public Client Client { get; set; }
 	}
 }
