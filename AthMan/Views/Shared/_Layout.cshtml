@@ -38,12 +38,12 @@
     </header>
 
     <div class="container">
-        <main role="main" class="mt-5">
+        <main role="main" class="mt-5 mb-5">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted mt-5">
         <div class="container">
             &copy; 2021 - The AthMan
         </div>
@@ -52,6 +52,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

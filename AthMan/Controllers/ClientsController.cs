@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AthMan.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,24 +9,108 @@ namespace AthMan.Controllers
 {
 	public class ClientsController : Controller
 	{
-		public IActionResult Index()
+		#region Members
+
+		private AthManContext context { get; set; }
+
+		#endregion
+
+		#region Construction
+
+		public ClientsController(AthManContext context)
 		{
-			return View();
+			this.context = context;
 		}
 
+		#endregion
+
+		#region Actions
+
+		public IActionResult Index()
+		{
+			var clients = context.Clients.OrderBy(i => i.FirstName).ThenBy(i => i.LastName).ToList();
+			return View(clients);
+		}
+
+		[HttpGet]
 		public IActionResult Details()
 		{
 			return View();
 		}
 
-		public IActionResult Edit()
+		[HttpGet]
+		public IActionResult Add()
 		{
-			return View();
+			ViewBag.Action = "Add";
+
+			var model = new ClientViewModel()
+			{
+				Countries = context.Countries.OrderBy(c => c.Name).ToList(),
+				Client = new Client()
+			};
+
+			return View("Edit", model);
 		}
 
-		public IActionResult Delete()
+		[HttpGet]
+		public IActionResult Edit(int id)
 		{
-			return View();
+			ViewBag.Action = "Edit";
+
+			var model = new ClientViewModel()
+			{
+				Countries = context.Countries.OrderBy(c => c.Name).ToList(),
+				Client = context.Clients.Find(id)
+			};
+
+			return View(model);
 		}
+
+		[HttpPost]
+		public IActionResult Edit(Client client)
+		{
+			if (ModelState.IsValid)
+			{
+				if (client.ClientID == 0)
+				{
+					context.Clients.Add(client);
+				}
+				else
+				{
+					context.Clients.Update(client);
+				}
+				context.SaveChanges();
+				return RedirectToAction("Index", "Clients");
+			}
+			else
+			{
+				ViewBag.Action = (client.ClientID == 0) ? "Add" : "Edit";
+
+				var model = new ClientViewModel()
+				{
+					Countries = context.Countries.OrderBy(c => c.Name).ToList(),
+					Client = client
+				};
+
+				return View(model);
+			}
+		}
+
+		[HttpGet]
+		public IActionResult Delete(int id)
+		{
+			var client = context.Clients.Find(id);
+			return View(client);
+		}
+
+		[HttpPost]
+		public IActionResult Delete(Client client)
+		{
+			context.Clients.Remove(client);
+			context.SaveChanges();
+			return RedirectToAction("Index", "Clients");
+		}
+
+		#endregion
 	}
 }

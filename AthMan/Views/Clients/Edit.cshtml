@@ -1,2 +1,77 @@
-﻿@{
+﻿@model ClientViewModel
+@{
+    string title = ViewBag.Action + " Client";
+    ViewBag.Title = title;
 }
+
+<div class="text-center">
+    <h1 class="display-3" style="margin-top: 65px">@ViewBag.Title</h1>
+</div>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.Client.FirstName">First Name</label>
+        <input asp-for="@Model.Client.FirstName" class="form-control" />
+        <span asp-validation-for="@Model.Client.FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Client.LastName">Last Name</label>
+        <input asp-for="@Model.Client.LastName" class="form-control" />
+        <span asp-validation-for="@Model.Client.LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Client.Address">Address</label>
+        <input asp-for="@Model.Client.Address" class="form-control" />
+        <span asp-validation-for="@Model.Client.Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Client.City">City</label>
+        <input asp-for="@Model.Client.City" class="form-control" />
+        <span asp-validation-for="@Model.Client.City" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Client.State">State</label>
+        <input asp-for="@Model.Client.State" class="form-control" />
+        <span asp-validation-for="@Model.Client.State" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Client.PostalCode">Postal Code</label>
+        <input asp-for="@Model.Client.PostalCode" class="form-control" />
+        <span asp-validation-for="@Model.Client.PostalCode" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Client.CountryID">Country</label>
+        <select asp-for="@Model.Client.CountryID" class="form-control">
+            <option value="@string.Empty">select a country</option>
+            @foreach (Country c in @Model.Countries)
+            {
+                <option value="@c.CountryID">@c.Name</option>
+            }
+        </select>
+        <span asp-validation-for="@Model.Client.CountryID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Client.Phone">Phone</label>
+        <input asp-for="@Model.Client.Phone" class="form-control" />
+        <span asp-validation-for="@Model.Client.Phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Client.Email">Email</label>
+        <input asp-for="@Model.Client.Email" class="form-control" />
+        <span asp-validation-for="@Model.Client.Email" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="@Model.Client.ClientID" />
+
+    <button type="submit" class="btn btn-primary mb-5">@ViewBag.Action</button>
+    <a asp-controller="Clients" asp-action="Index" class="btn btn-primary mb-5">Cancel</a>
+    
+</form>
