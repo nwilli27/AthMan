@@ -9,7 +9,6 @@ namespace AthMan.Controllers
 {
 	public class ItemsController : Controller
 	{
-
 		#region Members
 
 		private AthManContext context { get; set; }
@@ -24,6 +23,8 @@ namespace AthMan.Controllers
 		}
 
 		#endregion
+
+		#region Actions
 
 		public IActionResult Index()
 		{
@@ -45,5 +46,7 @@ namespace AthMan.Controllers
 		{
 			return View();
 		}
+
+		#endregion
 	}
 }
