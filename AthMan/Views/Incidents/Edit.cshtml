@@ -64,6 +64,7 @@
     </div>
 
     <input type="hidden" asp-for="@Model.Incident.IncidentID" />
+    <input type="hidden" asp-for="@Model.Incident.DateOpened" />
 
     <button type="submit" class="btn btn-primary mb-5">@ViewBag.Action</button>
     <a asp-controller="Incidents" asp-action="Index" class="btn btn-primary mb-5">Cancel</a>

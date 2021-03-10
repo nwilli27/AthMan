@@ -32,12 +32,12 @@ namespace AthMan.Controllers
 		}
 
 		[Route("[controller]/{id?}")]
-		public IActionResult List(string id="all")
+		public IActionResult List(string filter="all")
 		{
 			var listViewModel = new IncidentListViewModel()
 			{
-				Incidents = this.getFilteredIncidentList(id).OrderBy(i => i.Title).ToList(),
-				SelectedFilter = id
+				Incidents = this.getFilteredIncidentList(filter).OrderBy(i => i.Title).ToList(),
+				SelectedFilter = filter
 			};
 
 			return View(listViewModel);
@@ -46,8 +46,8 @@ namespace AthMan.Controllers
 		[HttpGet]
 		public IActionResult Details(int id)
 		{
-			var item = context.Items.Find(id);
-			return View(item);
+			var incident = context.IncidentPopulated(id);
+			return View(incident);
 		}
 
 		[HttpGet]
@@ -118,15 +118,15 @@ namespace AthMan.Controllers
 
 		#region Private Helpers
 
-		private List<Incident> getFilteredIncidentList(string id)
+		private List<Incident> getFilteredIncidentList(string filter)
 		{
 			var incidents = new List<Incident>();
 
-			if (id == "noemployee")
+			if (filter == "noemployee")
 			{
 				incidents = context.IncidentsPopulated.Where(i => i.Employee == null).ToList();
 			}
-			else if (id == "nodateclosed")
+			else if (filter == "nodateclosed")
 			{
 				incidents = context.IncidentsPopulated.Where(i => i.DateClosed == null).ToList();
 			}
