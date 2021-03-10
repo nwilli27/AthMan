@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace AthMan.Models
@@ -16,9 +17,20 @@ namespace AthMan.Models
         public DbSet<Client> Clients { get; set; }
         public DbSet<Incident> Incidents { get; set; }
 
-		public async Task<Client> ClientPopulated(int id)
+        public IList<Incident> IncidentsPopulated => this.Incidents.Include(i => i.Client).ThenInclude(c => c.Country)
+                                                                   .Include(i => i.Item)
+                                                                   .Include(i => i.Employee).ToList();
+
+        public IList<Client> ClientsPopulated => this.Clients.Include(c => c.Country).ToList();
+
+        public Client ClientPopulated(int id)
 		{
-			return await this.Clients.Include(c => c.Country).FirstOrDefaultAsync(c => c.ClientID == id);
+			return this.ClientsPopulated.FirstOrDefault(c => c.ClientID == id);
+		}
+
+        public Incident IncidentPopulated(int id)
+		{
+            return this.IncidentsPopulated.FirstOrDefault(i => i.IncidentID == id);
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

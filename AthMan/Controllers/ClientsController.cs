@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AthMan.Controllers
 {
@@ -33,9 +32,9 @@ namespace AthMan.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> Details(int id)
+		public IActionResult Details(int id)
 		{
-			var client = await context.ClientPopulated(id);
+			var client = context.ClientPopulated(id);
 			return View(client);
 		}
 
