@@ -3,40 +3,42 @@
     ViewBag.Title = "Incident Details";
 }
 
-<div class="row justify-content-center">
-    <div class="col-sm-8">
-        <table class="table table-bordered table-striped">
-            <tr>
-                <td>Title:</td>
-                <td>@Model.Title</td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td>@Model.Description</td>
-            </tr>
-            <tr>
-                <td>Item:</td>
-                <td>@Model.Item.Name (@Model.Item.ItemCode)</td>
-            </tr>
-            <tr>
-                <td>Client:</td>
-                <td>@Model.Client.FullName</td>
-            </tr>
-            <tr>
-                <td>Employee:</td>
-                <td>@Model.Employee.Name</td>
-            </tr>
-            <tr>
-                <td>Opened:</td>
-                <td>@Model.DateOpened.ToShortDateString()</td>
-            </tr>
-            <tr>
-                <td>Closed:</td>
-                <td>@(Model.DateClosed != null ? Model.DateClosed.Value.ToShortDateString() : "")</td>
-            </tr>
-        </table>
-        <a asp-controller="Incidents" asp-action="Edit" class="btn btn-primary"
-           asp-route-id="@Model.IncidentID"><span class="fas fas fa-edit"></span> Edit</a>
-        <a asp-controller="Incidents" asp-action="Index" class="btn btn-primary mb-5 float-right">Cancel</a>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>Title:</td>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <td>Item:</td>
+                    <td>@Model.Item.Name (@Model.Item.ItemCode)</td>
+                </tr>
+                <tr>
+                    <td>Client:</td>
+                    <td>@Model.Client.FullName</td>
+                </tr>
+                <tr>
+                    <td>Employee:</td>
+                    <td>@Model.Employee.Name</td>
+                </tr>
+                <tr>
+                    <td>Opened:</td>
+                    <td>@Model.DateOpened.ToShortDateString()</td>
+                </tr>
+                <tr>
+                    <td>Closed:</td>
+                    <td>@(Model.DateClosed != null ? Model.DateClosed.Value.ToShortDateString() : "")</td>
+                </tr>
+            </table>
+            <a asp-controller="Incidents" asp-action="Edit" class="btn btn-primary"
+               asp-route-id="@Model.IncidentID"><span class="fas fas fa-edit"></span> Edit</a>
+            <a asp-controller="Incidents" asp-action="Index" class="btn btn-primary mb-5 float-right">Cancel</a>
+        </div>
     </div>
 </div>

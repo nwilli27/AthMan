@@ -1,45 +1,50 @@
 ﻿@model Client
 @{
     ViewBag.Title = "Client Details";
-    ViewBag.TitleMessage = $"Client: {@Model.FullName}";
 }
 
-<div class="row justify-content-center">
-    <div class="col-sm-8">
-        <table class="table table-bordered table-striped">
-            <tr>
-                <td>Address:</td>
-                <td>@Model.Address</td>
-            </tr>
-            <tr>
-                <td>City:</td>
-                <td>@Model.City</td>
-            </tr>
-            <tr>
-                <td>State:</td>
-                <td>@Model.State</td>
-            </tr>
-            <tr>
-                <td>Postal Code:</td>
-                <td>@Model.PostalCode</td>
-            </tr>
-            <tr>
-                <td>Country:</td>
-                <td>@Model.Country.Name</td>
-            </tr>
-            <tr>
-                <td>Phone Number:</td>
-                <td>@Model.Phone</td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td>@Model.Email</td>
-            </tr>
-        </table>
-        <a asp-controller="Clients" asp-action="Edit" class="btn btn-primary"
-           asp-route-id="@Model.ClientID"><span class="fas fas fa-edit"></span> Edit</a>
-        <a asp-controller="Clients" asp-action="Delete" class="btn btn-danger"
-           asp-route-id="@Model.ClientID"><span class="fas fa-minus"></span> Delete</a>
-        <a asp-controller="Clients" asp-action="Index" class="btn btn-primary mb-5 float-right">Cancel</a>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>Full name:</td>
+                    <td>@Model.FullName</td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td>@Model.Address</td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td>@Model.City</td>
+                </tr>
+                <tr>
+                    <td>State:</td>
+                    <td>@Model.State</td>
+                </tr>
+                <tr>
+                    <td>Postal Code:</td>
+                    <td>@Model.PostalCode</td>
+                </tr>
+                <tr>
+                    <td>Country:</td>
+                    <td>@Model.Country.Name</td>
+                </tr>
+                <tr>
+                    <td>Phone Number:</td>
+                    <td>@Model.Phone</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>@Model.Email</td>
+                </tr>
+            </table>
+            <a asp-controller="Clients" asp-action="Edit" class="btn btn-primary"
+               asp-route-id="@Model.ClientID"><span class="fas fas fa-edit"></span> Edit</a>
+            <a asp-controller="Clients" asp-action="Delete" class="btn btn-danger"
+               asp-route-id="@Model.ClientID"><span class="fas fa-minus"></span> Delete</a>
+            <a asp-controller="Clients" asp-action="Index" class="btn btn-primary mb-5 float-right">Cancel</a>
+        </div>
     </div>
 </div>

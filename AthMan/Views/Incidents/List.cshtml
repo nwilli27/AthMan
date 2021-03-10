@@ -3,56 +3,58 @@
     ViewBag.Title = "Incident List";
 }
 
-<div class="row">
-    <div class="col-sm-2">
-        <a asp-controller="Incidents" asp-action="List" asp-route-filter="all"
-           class="list-group-item @(@Model.CheckActiveFilter("all"))">
-            All
-        </a>
-        <a asp-controller="Incidents" asp-action="List" asp-route-filter="noemployee"
-           class="list-group-item @(@Model.CheckActiveFilter("noemployee"))">
-            No Employee
-        </a>
-        <a asp-controller="Incidents" asp-action="List" asp-route-filter="nodateclosed"
-           class="list-group-item @(@Model.CheckActiveFilter("nodateclosed"))">
-            No Closed Date
-        </a>
-    </div>
+<div class="mr-5 ml-5">
+    <div class="row">
+        <div class="col-md-2 mb-2">
+            <a asp-controller="Incidents" asp-action="List" asp-route-filter="all"
+               class="list-group-item @(@Model.CheckActiveFilter("all"))">
+                All
+            </a>
+            <a asp-controller="Incidents" asp-action="List" asp-route-filter="noemployee"
+               class="list-group-item @(@Model.CheckActiveFilter("noemployee"))">
+                No Employee
+            </a>
+            <a asp-controller="Incidents" asp-action="List" asp-route-filter="nodateclosed"
+               class="list-group-item @(@Model.CheckActiveFilter("nodateclosed"))">
+                No Closed Date
+            </a>
+        </div>
 
-    <div class="col-sm-10">
-        <a asp-controller="Incidents" asp-action="Add" class="btn btn-success mb-2"><span class="fas fa-plus"></span> Add New Incident</a>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Client</th>
-                    <th>Item</th>
-                    <th>Employee</th>
-                    <th>Opened</th>
-                    <th>Closed</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var incident in @Model.Incidents)
-                {
+        <div class="col-sm-10">
+            <a asp-controller="Incidents" asp-action="Add" class="btn btn-success mb-2"><span class="fas fa-plus"></span> Add New Incident</a>
+            <table class="table table-bordered table-striped">
+                <thead>
                     <tr>
-                        <td>
-                            <a asp-controller="Incidents" asp-action="Details" class="text-dark"
-                               asp-route-id="@incident.IncidentID">@incident.Title</a>
-                        </td>
-                        <td>@incident.Client?.FullName</td>
-                        <td>@incident.Item?.Name</td>
-                        <td>@incident.Employee?.Name</td>
-                        <td>@incident.DateOpened.ToShortDateString()</td>
-                        <td>@(incident.DateClosed != null ? @incident.DateClosed.Value.ToShortDateString() : "")</td>
-                        <td>
-                            <a asp-controller="Incidents" asp-action="Edit" class="btn btn-primary"
-                               asp-route-id="@incident.IncidentID"><span class="fas fas fa-edit"></span></a>
-                        </td>
+                        <th>Title</th>
+                        <th>Client</th>
+                        <th>Item</th>
+                        <th>Employee</th>
+                        <th>Opened</th>
+                        <th>Closed</th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var incident in @Model.Incidents)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Incidents" asp-action="Details" class="text-dark"
+                                   asp-route-id="@incident.IncidentID">@incident.Title</a>
+                            </td>
+                            <td>@incident.Client?.FullName</td>
+                            <td>@incident.Item?.Name</td>
+                            <td>@incident.Employee?.Name</td>
+                            <td>@incident.DateOpened.ToShortDateString()</td>
+                            <td>@(incident.DateClosed != null ? @incident.DateClosed.Value.ToShortDateString() : "")</td>
+                            <td>
+                                <a asp-controller="Incidents" asp-action="Edit" class="btn btn-primary"
+                                   asp-route-id="@incident.IncidentID"><span class="fas fas fa-edit"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

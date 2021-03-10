@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top mb-3">
+        <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top mb-3">
             <nav class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav mr-auto">
                     <a class="nav-link
@@ -39,27 +39,25 @@
         </nav>
     </header>
 
-    <div class="container">
-        <main class="mt-5 mb-5">
+    <main class="mt-5 mb-5">
 
-            <div class="text-center">
-                <h1 class="display-3 mb-1" style="margin-top: 65px">@ViewBag.Title</h1>
-                <p class="lead mb-4">@ViewBag.TitleMessage</p>
+        <div class="text-center">
+            <h1 class="display-3 mb-1" style="margin-top: 65px">@ViewBag.Title</h1>
+            <p class="lead mb-4">@ViewBag.TitleMessage</p>
+        </div>
+
+        @if (confirmationMessage != string.Empty)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @confirmationMessage
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+        }
 
-            @if (confirmationMessage != string.Empty)
-            {
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    @confirmationMessage
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            }
-
-            @RenderBody()
-        </main>
-    </div>
+        @RenderBody()
+    </main>
 
     <footer class="border-top footer text-muted mt-5">
         <div class="container">

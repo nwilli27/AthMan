@@ -5,34 +5,116 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AthMan.Models
 {
-    public class AthManContext : DbContext
+	/// <summary>
+	/// Holds database structure for the AthMan application
+    /// 
+    /// Author: Nolan Williams
+    /// Date:   3/9/2021
+	/// </summary>
+	/// <seealso cref="Microsoft.EntityFrameworkCore.DbContext" />
+	public class AthManContext : DbContext
     {
-        public AthManContext(DbContextOptions<AthManContext> options)
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AthManContext"/> class.
+		/// </summary>
+		/// <param name="options">The options.</param>
+		public AthManContext(DbContextOptions<AthManContext> options)
             : base(options)
         { }
 
-        public DbSet<Item> Items { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<Incident> Incidents { get; set; }
+		/// <summary>
+		/// Gets or sets the items.
+		/// </summary>
+		/// <value>
+		/// The items.
+		/// </value>
+		public DbSet<Item> Items { get; set; }
 
-        public IList<Incident> IncidentsPopulated => this.Incidents.Include(i => i.Client).ThenInclude(c => c.Country)
+		/// <summary>
+		/// Gets or sets the employees.
+		/// </summary>
+		/// <value>
+		/// The employees.
+		/// </value>
+		public DbSet<Employee> Employees { get; set; }
+
+		/// <summary>
+		/// Gets or sets the countries.
+		/// </summary>
+		/// <value>
+		/// The countries.
+		/// </value>
+		public DbSet<Country> Countries { get; set; }
+
+		/// <summary>
+		/// Gets or sets the clients.
+		/// </summary>
+		/// <value>
+		/// The clients.
+		/// </value>
+		public DbSet<Client> Clients { get; set; }
+
+		/// <summary>
+		/// Gets or sets the incidents.
+		/// </summary>
+		/// <value>
+		/// The incidents.
+		/// </value>
+		public DbSet<Incident> Incidents { get; set; }
+
+		/// <summary>
+		/// Gets the incidents populated.
+		/// </summary>
+		/// <value>
+		/// The incidents populated.
+		/// </value>
+		public IList<Incident> IncidentsPopulated => this.Incidents.Include(i => i.Client).ThenInclude(c => c.Country)
                                                                    .Include(i => i.Item)
                                                                    .Include(i => i.Employee).ToList();
 
-        public IList<Client> ClientsPopulated => this.Clients.Include(c => c.Country).ToList();
+		/// <summary>
+		/// Gets the clients populated.
+		/// </summary>
+		/// <value>
+		/// The clients populated.
+		/// </value>
+		public IList<Client> ClientsPopulated => this.Clients.Include(c => c.Country).ToList();
 
+        /// <summary>
+		/// Returns the first Client that has the matching [id] from
+        /// a list that has already been joined.
+		/// </summary>
+		/// <param name="id">The identifier.</param>
+		/// <returns>A Client</returns>
         public Client ClientPopulated(int id)
 		{
 			return this.ClientsPopulated.FirstOrDefault(c => c.ClientID == id);
 		}
 
-        public Incident IncidentPopulated(int id)
+		/// <summary>
+		/// Returns the first incident that has the matching [id] from
+        /// a list that has already been joined.
+		/// </summary>
+		/// <param name="id">The identifier.</param>
+		/// <returns>A Incident</returns>
+		public Incident IncidentPopulated(int id)
 		{
             return this.IncidentsPopulated.FirstOrDefault(i => i.IncidentID == id);
 		}
 
+		/// <summary>
+		/// Override this method to further configure the model that was discovered by convention from the entity types
+		/// exposed in <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1" /> properties on your derived context. The resulting model may be cached
+		/// and re-used for subsequent instances of your derived context.
+		/// </summary>
+		/// <param name="modelBuilder">The builder being used to construct the model for this context. Databases (and other extensions) typically
+		/// define extension methods on this object that allow you to configure aspects of the model that are specific
+		/// to a given database.</param>
+		/// <remarks>
+		/// If a model is explicitly set on the options for this context (via <see cref="M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseModel(Microsoft.EntityFrameworkCore.Metadata.IModel)" />)
+		/// then this method will not be run.
+		/// </remarks>
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Item>().HasData(

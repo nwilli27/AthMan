@@ -6,6 +6,13 @@ using System.Linq;
 
 namespace AthMan.Controllers
 {
+	/// <summary>
+	/// Holds actions for Incidents
+	/// 
+	/// Author: Nolan Williams
+	/// Date:	3/9/2021
+	/// </summary>
+	/// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
 	public class IncidentsController : Controller
 	{
 
@@ -17,6 +24,10 @@ namespace AthMan.Controllers
 
 		#region Construction
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IncidentsController"/> class.
+		/// </summary>
+		/// <param name="context">The context.</param>
 		public IncidentsController(AthManContext context)
 		{
 			this.context = context;
@@ -26,11 +37,20 @@ namespace AthMan.Controllers
 
 		#region Actions
 
+		/// <summary>
+		/// The index action for Incident.
+		/// </summary>
+		/// <returns>Returns the Index view.</returns>
 		public IActionResult Index()
 		{
 			return RedirectToAction("List", "Incidents");
 		}
 
+		/// <summary>
+		/// Returns the List view for Incidents
+		/// </summary>
+		/// <param name="filter">The incidents filter.</param>
+		/// <returns>List view for Incidents</returns>
 		[Route("[controller]/{id?}")]
 		public IActionResult List(string filter="all")
 		{
@@ -43,6 +63,11 @@ namespace AthMan.Controllers
 			return View(listViewModel);
 		}
 
+		/// <summary>
+		/// Returns the Details view for a Incident
+		/// </summary>
+		/// <param name="id">The identifier.</param>
+		/// <returns>Details view for a Incident</returns>
 		[HttpGet]
 		public IActionResult Details(int id)
 		{
@@ -50,6 +75,10 @@ namespace AthMan.Controllers
 			return View(incident);
 		}
 
+		/// <summary>
+		/// Returns the Edit view with a new Incident.
+		/// </summary>
+		/// <returns>Edit view for a new Incident</returns>
 		[HttpGet]
 		public IActionResult Add()
 		{
@@ -66,6 +95,11 @@ namespace AthMan.Controllers
 			return View("Edit", incidentViewModel);
 		}
 
+		/// <summary>
+		/// Returns the Edit view for a Incident
+		/// </summary>
+		/// <param name="id">The identifier.</param>
+		/// <returns>Edit view for a Incident</returns>
 		[HttpGet]
 		public IActionResult Edit(int id)
 		{
@@ -82,6 +116,11 @@ namespace AthMan.Controllers
 			return View(incidentViewModel);
 		}
 
+		/// <summary>
+		/// Add/Edits the specified Incident and returns back to index view.
+		/// </summary>
+		/// <param name="incident">The Incident.</param>
+		/// <returns>Redirect back to index view</returns>
 		[HttpPost]
 		public IActionResult Edit(Incident incident)
 		{

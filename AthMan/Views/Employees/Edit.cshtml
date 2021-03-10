@@ -4,28 +4,30 @@
     ViewBag.Title = title;
 }
 
-<form asp-action="Edit" method="post">
-    <div class="form-group">
-        <label asp-for="@Model.Name">Name</label>
-        <input asp-for="@Model.Name" class="form-control" />
-        <span asp-validation-for="@Model.Name" class="text-danger"></span>
-    </div>
+<div class="container">
+    <form asp-action="Edit" method="post">
+        <div class="form-group">
+            <label asp-for="@Model.Name">Name</label>
+            <input asp-for="@Model.Name" class="form-control" />
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="@Model.Email">Email</label>
-        <input asp-for="@Model.Email" class="form-control" />
-        <span asp-validation-for="@Model.Email" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="@Model.Email">Email</label>
+            <input asp-for="@Model.Email" class="form-control" />
+            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="@Model.Phone">Phone</label>
-        <input asp-for="@Model.Phone" class="form-control" />
-        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="@Model.Phone">Phone</label>
+            <input asp-for="@Model.Phone" class="form-control" />
+            <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+        </div>
 
-    <input type="hidden" asp-for="@Model.EmployeeID" />
+        <input type="hidden" asp-for="@Model.EmployeeID" />
 
-    <button type="submit" class="btn btn-primary mb-5">@ViewBag.Action</button>
-    <a asp-controller="Employees" asp-action="Index" class="btn btn-primary mb-5">Cancel</a>
+        <button type="submit" class="btn btn-primary mb-5">@ViewBag.Action</button>
+        <a asp-controller="Employees" asp-action="Index" class="btn btn-primary mb-5">Cancel</a>
 
-</form>
+    </form>
+</div>
