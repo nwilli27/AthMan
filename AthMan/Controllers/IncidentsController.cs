@@ -90,10 +90,12 @@ namespace AthMan.Controllers
 				if (incident.IncidentID == 0)
 				{
 					context.Incidents.Add(incident);
+					TempData["ConfirmationMessage"] = $"You successfully added the Incident.";
 				}
 				else
 				{
 					context.Incidents.Update(incident);
+					TempData["ConfirmationMessage"] = $"You successfully updated the incident.";
 				}
 				context.SaveChanges();
 				return RedirectToAction("Index", "Incidents");

@@ -61,10 +61,12 @@ namespace AthMan.Controllers
 			{
 				if (employee.EmployeeID == 0)
 				{
+					TempData["ConfirmationMessage"] = $"You successfully added the employee {employee.Name}.";
 					context.Employees.Add(employee);
 				}
 				else
 				{
+					TempData["ConfirmationMessage"] = $"You successfully updated the employee {employee.Name}.";
 					context.Employees.Update(employee);
 				}
 				context.SaveChanges();

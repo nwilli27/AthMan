@@ -63,10 +63,12 @@ namespace AthMan.Controllers
 				if (item.ItemID == 0)
 				{
 					context.Items.Add(item);
+					TempData["ConfirmationMessage"] = $"You successfully added the item {item.Name}.";
 				}
 				else
 				{
 					context.Items.Update(item);
+					TempData["ConfirmationMessage"] = $"You successfully updated the item {item.Name}.";
 				}
 				context.SaveChanges();
 				return RedirectToAction("Index", "Items");
