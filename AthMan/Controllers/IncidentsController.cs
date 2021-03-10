@@ -31,27 +31,16 @@ namespace AthMan.Controllers
 			return RedirectToAction("List", "Incidents");
 		}
 
-		[Route("[controller]s/{id?}")]
+		[Route("[controller]/{id?}")]
 		public IActionResult List(string id="all")
 		{
-			List<Incident> incidents = new List<Incident>();
-
-			if (id == "all")
+			var listViewModel = new IncidentListViewModel()
 			{
-				incidents = context.IncidentsPopulated.ToList();
-			} 
-			else if (id == "noemployee")
-			{
-				incidents = context.IncidentsPopulated.Where(i => i.Employee == null).ToList();
-			}
-			else if (id == "nodateclosed")
-			{
-				incidents = context.IncidentsPopulated.Where(i => i.DateClosed == null).ToList();
-			}
+				Incidents = this.getFilteredIncidentList(id).OrderBy(i => i.Title).ToList(),
+				SelectedFilter = id
+			};
 
-			incidents = incidents.OrderBy(i => i.Title).ToList();
-
-			return View(incidents);
+			return View(listViewModel);
 		}
 
 		[HttpGet]
@@ -65,7 +54,7 @@ namespace AthMan.Controllers
 		public IActionResult Add()
 		{
 			ViewBag.Action = "Add";
-			return View("Edit", new Item());
+			return View("Edit", new Incident());
 		}
 
 		[HttpGet]
@@ -73,32 +62,56 @@ namespace AthMan.Controllers
 		{
 			ViewBag.Action = "Edit";
 
-			var item = context.Items.Find(id);
-
+			var item = context.IncidentPopulated(id);
+			
 			return View(item);
 		}
 
 		[HttpPost]
-		public IActionResult Edit(Item item)
+		public IActionResult Edit(Incident incident)
 		{
 			if (ModelState.IsValid)
 			{
-				if (item.ItemID == 0)
+				if (incident.IncidentID == 0)
 				{
-					context.Items.Add(item);
+					context.Incidents.Add(incident);
 				}
 				else
 				{
-					context.Items.Update(item);
+					context.Incidents.Update(incident);
 				}
 				context.SaveChanges();
-				return RedirectToAction("Index", "Items");
+				return RedirectToAction("Index", "Incidents");
 			}
 			else
 			{
-				ViewBag.Action = (item.ItemID == 0) ? "Add" : "Edit";
-				return View(item);
+				ViewBag.Action = (incident.IncidentID == 0) ? "Add" : "Edit";
+				return View(incident);
 			}
+		}
+
+		#endregion
+
+		#region Private Helpers
+
+		private List<Incident> getFilteredIncidentList(string id)
+		{
+			var incidents = new List<Incident>();
+
+			if (id == "all")
+			{
+				incidents = context.IncidentsPopulated.ToList();
+			}
+			else if (id == "noemployee")
+			{
+				incidents = context.IncidentsPopulated.Where(i => i.Employee == null).ToList();
+			}
+			else if (id == "nodateclosed")
+			{
+				incidents = context.IncidentsPopulated.Where(i => i.DateClosed == null).ToList();
+			}
+
+			return incidents;
 		}
 
 		#endregion

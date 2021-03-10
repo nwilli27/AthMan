@@ -1,1 +1,21 @@
-﻿
+﻿@model IncidentViewModel
+@{
+    string title = ViewBag.Action + " Incident";
+    ViewBag.Title = title;
+}
+
+<div class="text-center">
+    <h1 class="display-3" style="margin-top: 65px">@ViewBag.Title</h1>
+</div>
+
+<div class="form-group">
+    <label asp-for="@Model.CountryID">Country</label>
+    <select asp-for="@Model.Client.CountryID" class="form-control">
+        <option value="@string.Empty">select a country</option>
+        @foreach (Country c in @Model.Countries)
+        {
+            <option value="@c.CountryID">@c.Name</option>
+        }
+    </select>
+    <span asp-validation-for="@Model.Client.CountryID" class="text-danger"></span>
+</div>

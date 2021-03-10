@@ -1,4 +1,4 @@
-﻿@model List<Incident>
+﻿@model IncidentListViewModel
 @{
     ViewBag.Title = "Incident List";
 }
@@ -10,15 +10,15 @@
 <div class="row">
     <div class="col-sm-2">
         <a asp-controller="Incidents" asp-action="List" asp-route-id="all"
-           class="list-group-item">
+           class="list-group-item @(@Model.CheckActiveFilter("all"))">
             All
         </a>
         <a asp-controller="Incidents" asp-action="List" asp-route-id="noemployee"
-           class="list-group-item">
+           class="list-group-item @(@Model.CheckActiveFilter("noemployee"))">
             No Employee
         </a>
         <a asp-controller="Incidents" asp-action="List" asp-route-id="nodateclosed"
-           class="list-group-item">
+           class="list-group-item @(@Model.CheckActiveFilter("nodateclosed"))">
             No Closed Date
         </a>
     </div>
@@ -38,7 +38,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var incident in Model)
+                @foreach (var incident in @Model.Incidents)
                 {
                     <tr>
                         <td>
