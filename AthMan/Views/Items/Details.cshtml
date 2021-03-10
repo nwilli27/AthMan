@@ -1,12 +1,8 @@
 ﻿@model Item
 @{
     ViewBag.Title = "Item Details";
+    ViewBag.TitleMessage = $"{@Model.Name} ({@Model.ItemCode})";
 }
-
-<div class="text-center">
-    <h1 class="display-3" style="margin-top: 65px">Item Details</h1>
-    <p class="lead">@Model.Name (@Model.ItemCode)</p>
-</div>
 
 <div class="row justify-content-center">
     <div class="col-sm-8">

@@ -73,10 +73,12 @@ namespace AthMan.Controllers
 			{
 				if (client.ClientID == 0)
 				{
+					TempData["ConfirmationMessage"] = $"You successfully added the client {client.FullName}.";
 					context.Clients.Add(client);
 				}
 				else
 				{
+					TempData["ConfirmationMessage"] = $"You successfully updated the client {client.FullName}.";
 					context.Clients.Update(client);
 				}
 				context.SaveChanges();

@@ -1,12 +1,8 @@
 ﻿@model Client
 @{
     ViewBag.Title = "Client Details";
+    ViewBag.TitleMessage = $"Client: {@Model.FullName}";
 }
-
-<div class="text-center">
-    <h1 class="display-3" style="margin-top: 65px">Client Details</h1>
-    <p class="lead">@Model.FullName</p>
-</div>
 
 <div class="row justify-content-center">
     <div class="col-sm-8">

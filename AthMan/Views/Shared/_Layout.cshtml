@@ -1,6 +1,7 @@
 ﻿@{
     string controller = ViewContext.RouteData.Values["controller"].ToString();
     string action = ViewContext.RouteData.Values["action"].ToString();
+    var confirmationMessage = TempData?["ConfirmationMessage"]?.ToString() ?? string.Empty;
 }
 <!DOCTYPE html>
 <html>
@@ -39,6 +40,22 @@
 
     <div class="container">
         <main class="mt-5 mb-5">
+
+            <div class="text-center">
+                <h1 class="display-3 mb-1" style="margin-top: 65px">@ViewBag.Title</h1>
+                <p class="lead mb-4">@ViewBag.TitleMessage</p>
+            </div>
+
+            @if (confirmationMessage != string.Empty)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @confirmationMessage
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
             @RenderBody()
         </main>
     </div>

@@ -4,10 +4,6 @@
     ViewBag.Title = title;
 }
 
-<div class="text-center">
-    <h1 class="display-3" style="margin-top: 65px">@ViewBag.Title</h1>
-</div>
-
 <form asp-action="Edit" method="post">
     <div class="form-group">
         <label asp-for="@Model.Name">Name</label>

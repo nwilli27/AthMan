@@ -3,10 +3,6 @@
     ViewBag.Title = "Client List";
 }
 
-<div class="text-center">
-    <h1 class="display-3" style="margin-top: 65px">Client List</h1>
-</div>
-
 <a asp-controller="Clients" asp-action="Add" class="btn btn-success mb-2"><span class="fas fa-plus"></span> Add New Client</a>
 <table class="table table-bordered table-striped">
     <thead>
@@ -20,20 +16,20 @@
     <tbody>
         @foreach (var client in Model)
         {
-        <tr>
-            <td>
-                <a asp-controller="Clients" asp-action="Details" class="text-dark"
-                   asp-route-id="@client.ClientID">@client.FullName</a>
-            </td>
-            <td>@client.Email</td>
-            <td>@client.Phone</td>
-            <td>
-                <a asp-controller="Clients" asp-action="Edit" class="btn btn-primary"
-                   asp-route-id="@client.ClientID"><span class="fas fas fa-edit"></span></a>
-                <a asp-controller="Clients" asp-action="Delete" class="btn btn-danger"
-                   asp-route-id="@client.ClientID"><span class="fas fa-minus"></span></a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <a asp-controller="Clients" asp-action="Details" class="text-dark"
+                       asp-route-id="@client.ClientID">@client.FullName</a>
+                </td>
+                <td>@client.Email</td>
+                <td>@client.Phone</td>
+                <td>
+                    <a asp-controller="Clients" asp-action="Edit" class="btn btn-primary"
+                       asp-route-id="@client.ClientID"><span class="fas fas fa-edit"></span></a>
+                    <a asp-controller="Clients" asp-action="Delete" class="btn btn-danger"
+                       asp-route-id="@client.ClientID"><span class="fas fa-minus"></span></a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
