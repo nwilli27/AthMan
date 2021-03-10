@@ -8,14 +8,63 @@
     <h1 class="display-3" style="margin-top: 65px">@ViewBag.Title</h1>
 </div>
 
-<div class="form-group">
-    <label asp-for="@Model.CountryID">Country</label>
-    <select asp-for="@Model.Client.CountryID" class="form-control">
-        <option value="@string.Empty">select a country</option>
-        @foreach (Country c in @Model.Countries)
-        {
-            <option value="@c.CountryID">@c.Name</option>
-        }
-    </select>
-    <span asp-validation-for="@Model.Client.CountryID" class="text-danger"></span>
-</div>
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.Incident.Title">Title</label>
+        <input asp-for="@Model.Incident.Title" class="form-control" />
+        <span asp-validation-for="@Model.Incident.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Incident.Description">Description</label>
+        <input asp-for="@Model.Incident.Description" class="form-control" />
+        <span asp-validation-for="@Model.Incident.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Incident.ItemID">Item</label>
+        <select asp-for="@Model.Incident.ItemID" class="form-control">
+            <option value="-1">select a item</option>
+            @foreach (Item i in @Model.Items)
+            {
+                <option value="@i.ItemID">@i.Name</option>
+            }
+        </select>
+        <span asp-validation-for="@Model.Incident.ItemID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Incident.ClientID">Client</label>
+        <select asp-for="@Model.Incident.ClientID" class="form-control">
+            <option value="-1">select a client</option>
+            @foreach (Client c in @Model.Clients)
+            {
+                <option value="@c.ClientID">@c.FullName</option>
+            }
+        </select>
+        <span asp-validation-for="@Model.Incident.ClientID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Incident.EmployeeID">Employee</label>
+        <select asp-for="@Model.Incident.EmployeeID" class="form-control">
+            <option value="-1">select a employee</option>
+            @foreach (Employee e in @Model.Employees)
+            {
+                <option value="@e.EmployeeID">@e.Name</option>
+            }
+        </select>
+        <span asp-validation-for="@Model.Incident.EmployeeID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Incident.DateClosed">Date Closed</label>
+        <input asp-for="@Model.Incident.DateClosed" class="form-control" type="date" />
+        <span asp-validation-for="@Model.Incident" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="@Model.Incident.IncidentID" />
+
+    <button type="submit" class="btn btn-primary mb-5">@ViewBag.Action</button>
+    <a asp-controller="Incidents" asp-action="Index" class="btn btn-primary mb-5">Cancel</a>
+</form>

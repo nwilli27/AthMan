@@ -54,7 +54,16 @@ namespace AthMan.Controllers
 		public IActionResult Add()
 		{
 			ViewBag.Action = "Add";
-			return View("Edit", new Incident());
+
+			var incidentViewModel = new IncidentViewModel()
+			{
+				Incident = new Incident(),
+				Clients = context.Clients.ToList(),
+				Employees = context.Employees.ToList(),
+				Items = context.Items.ToList()
+			};
+
+			return View("Edit", incidentViewModel);
 		}
 
 		[HttpGet]
@@ -62,9 +71,15 @@ namespace AthMan.Controllers
 		{
 			ViewBag.Action = "Edit";
 
-			var item = context.IncidentPopulated(id);
-			
-			return View(item);
+			var incidentViewModel = new IncidentViewModel()
+			{
+				Incident = context.IncidentPopulated(id),
+				Clients = context.Clients.ToList(),
+				Employees = context.Employees.ToList(),
+				Items = context.Items.ToList()
+			};
+
+			return View(incidentViewModel);
 		}
 
 		[HttpPost]
@@ -86,7 +101,16 @@ namespace AthMan.Controllers
 			else
 			{
 				ViewBag.Action = (incident.IncidentID == 0) ? "Add" : "Edit";
-				return View(incident);
+
+				var incidentViewModel = new IncidentViewModel()
+				{
+					Incident = incident,
+					Clients = context.Clients.ToList(),
+					Employees = context.Employees.ToList(),
+					Items = context.Items.ToList()
+				};
+
+				return View(incidentViewModel);
 			}
 		}
 
@@ -98,17 +122,17 @@ namespace AthMan.Controllers
 		{
 			var incidents = new List<Incident>();
 
-			if (id == "all")
-			{
-				incidents = context.IncidentsPopulated.ToList();
-			}
-			else if (id == "noemployee")
+			if (id == "noemployee")
 			{
 				incidents = context.IncidentsPopulated.Where(i => i.Employee == null).ToList();
 			}
 			else if (id == "nodateclosed")
 			{
 				incidents = context.IncidentsPopulated.Where(i => i.DateClosed == null).ToList();
+			}
+			else
+			{
+				incidents = context.IncidentsPopulated.ToList();
 			}
 
 			return incidents;
